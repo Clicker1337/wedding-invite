@@ -3,20 +3,57 @@ import { useInView } from '../hooks/useInView'
 
 const API_URL = 'https://17316ead6387d801.mokky.dev/users'
 
-interface Guest {
-    id?: number
-    name: string
-    guests: string
-    message: string
-    createdAt: string
+interface Companion {
+    firstName: string
+    lastName: string
 }
+
+interface FormData {
+    firstName: string
+    lastName: string
+    guests: string
+    companions: Companion[]
+    message: string
+}
+
+const emptyCompanion = (): Companion => ({ firstName: '', lastName: '' })
 
 export default function RSVP() {
     const { ref, isVisible } = useInView()
-    const [form, setForm] = useState({ name: '', guests: '1', message: '' })
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+
+    const [form, setForm] = useState<FormData>({
+        firstName: '',
+        lastName: '',
+        guests: '1',
+        companions: [],
+        message: '',
+    })
+
+    function handleGuestsChange(value: string) {
+        const count = Number(value)
+        const companionCount = count - 1 // минус сам гость
+
+        // Сохраняем уже заполненных, добавляем новых или обрезаем
+        const updated = [...form.companions]
+        while (updated.length < companionCount) {
+            updated.push(emptyCompanion())
+        }
+
+        setForm({
+            ...form,
+            guests: value,
+            companions: updated.slice(0, companionCount),
+        })
+    }
+
+    function updateCompanion(index: number, field: keyof Companion, value: string) {
+        const updated = [...form.companions]
+        updated[index] = { ...updated[index], [field]: value }
+        setForm({ ...form, companions: updated })
+    }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -24,9 +61,11 @@ export default function RSVP() {
         setError(null)
 
         try {
-            const newGuest: Omit<Guest, 'id'> = {
-                name: form.name,
+            const payload = {
+                firstName: form.firstName,
+                lastName: form.lastName,
                 guests: form.guests,
+                companions: form.companions,
                 message: form.message,
                 createdAt: new Date().toISOString(),
             }
@@ -37,7 +76,7 @@ export default function RSVP() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newGuest),
+                body: JSON.stringify(payload),
             })
 
             const data = await response.json()
@@ -46,11 +85,10 @@ export default function RSVP() {
                 throw new Error(data.message || 'Ошибка при отправке')
             }
 
-            console.log('Гость сохранён:', data)
+            console.log('Сохранено:', data)
             setSubmitted(true)
         } catch (err) {
             const message = err instanceof Error ? err.message : 'Неизвестная ошибка'
-            console.error('Ошибка:', message)
             setError(message)
         } finally {
             setLoading(false)
@@ -64,39 +102,98 @@ export default function RSVP() {
 
                 {submitted ? (
                     <div className="rsvp-thanks">
-                        <p>🎉 Спасибо, {form.name}!</p>
+                        <p>🎉 Спасибо, {form.firstName}!</p>
                         <p>Мы ждём вас на нашем празднике!</p>
                     </div>
                 ) : (
                     <form className="rsvp-form" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="name">Ваше имя</label>
-                            <input
-                                id="name"
-                                type="text"
-                                placeholder="Иван Иванов"
-                                value={form.name}
-                                onChange={e => setForm({ ...form, name: e.target.value })}
-                                required
-                                disabled={loading}
-                            />
+
+                        {/* --- Имя и Фамилия гостя --- */}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="firstName">Ваше имя</label>
+                                <input
+                                    id="firstName"
+                                    type="text"
+                                    placeholder="Иван"
+                                    value={form.firstName}
+                                    onChange={e => setForm({ ...form, firstName: e.target.value })}
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="lastName">Ваша фамилия</label>
+                                <input
+                                    id="lastName"
+                                    type="text"
+                                    placeholder="Иванов"
+                                    value={form.lastName}
+                                    onChange={e => setForm({ ...form, lastName: e.target.value })}
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
                         </div>
 
+                        {/* --- Количество гостей --- */}
                         <div className="form-group">
-                            <label htmlFor="guests">Количество гостей</label>
+                            <label htmlFor="guests">Сколько вас будет?</label>
                             <select
                                 id="guests"
                                 value={form.guests}
-                                onChange={e => setForm({ ...form, guests: e.target.value })}
+                                onChange={e => handleGuestsChange(e.target.value)}
                                 disabled={loading}
                             >
-                                <option value="1">1</option>
-                                <option value="2">2 (с парой)</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                                <option value="1">Я один / одна</option>
+                                <option value="2">2 — с парой</option>
+                                <option value="3">3 — с семьёй</option>
+                                <option value="4">4 — с семьёй</option>
                             </select>
                         </div>
 
+                        {/* --- Компаньоны (появляются динамически) --- */}
+                        {form.companions.length > 0 && (
+                            <div className="companions-section">
+                                <p className="companions-title">
+                                    Укажите {form.companions.length > 1 ? 'ваших спутников' : 'вашего спутника'}:
+                                </p>
+
+                                {form.companions.map((companion, index) => (
+                                    <div key={index} className="companion-card">
+                                        <span className="companion-number">Гость {index + 2}</span>
+                                        <div className="form-row">
+                                            <div className="form-group">
+                                                <label htmlFor={`comp-first-${index}`}>Имя</label>
+                                                <input
+                                                    id={`comp-first-${index}`}
+                                                    type="text"
+                                                    placeholder="Имя"
+                                                    value={companion.firstName}
+                                                    onChange={e => updateCompanion(index, 'firstName', e.target.value)}
+                                                    required
+                                                    disabled={loading}
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor={`comp-last-${index}`}>Фамилия</label>
+                                                <input
+                                                    id={`comp-last-${index}`}
+                                                    type="text"
+                                                    placeholder="Фамилия"
+                                                    value={companion.lastName}
+                                                    onChange={e => updateCompanion(index, 'lastName', e.target.value)}
+                                                    required
+                                                    disabled={loading}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* --- Пожелание --- */}
                         <div className="form-group">
                             <label htmlFor="message">Пожелание (необязательно)</label>
                             <textarea
@@ -115,11 +212,7 @@ export default function RSVP() {
                             </div>
                         )}
 
-                        <button
-                            type="submit"
-                            className="rsvp-button"
-                            disabled={loading}
-                        >
+                        <button type="submit" className="rsvp-button" disabled={loading}>
                             {loading ? 'Отправляем...' : 'Подтверждаю ✓'}
                         </button>
                     </form>
