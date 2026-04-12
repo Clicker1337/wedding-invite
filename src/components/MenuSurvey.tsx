@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CatFoodPicker from './CatFoodPicker'
 
 const API_URL = 'https://17316ead6387d801.mokky.dev/menu'
 
@@ -415,7 +416,7 @@ export default function MenuSurvey() {
                     index={0}
                     isSelf={true}
                     disabled={loading}
-                    onChange={updated => setForm({ ...form, self: updated })}
+                    onChange={updated => setForm({...form, self: updated})}
                 />
 
                 {/* Формы для спутников */}
@@ -436,42 +437,29 @@ export default function MenuSurvey() {
                         <input
                             type="checkbox"
                             checked={form.catFood}
-                            onChange={e => setForm({ ...form, catFood: e.target.checked })}
+                            onChange={e =>
+                                setForm({
+                                    ...form,
+                                    catFood: e.target.checked,
+                                    catFoodBrand: e.target.checked ? form.catFoodBrand : '',
+                                })
+                            }
                             disabled={loading}
                         />
                         <span>
-              🐱 Вместо цветов / алкоголя закажу корм для котика на Озон
-              <br />
-              <small>пр. Строителей, 2</small>
-            </span>
+      🐱 Вместо цветов / алкоголя закажу корм для котика
+      <br/>
+      <small>Адрес: пр. Строителей, 2 (Озон / Вайлдберриз)</small>
+    </span>
                     </label>
 
                     {form.catFood && (
-                        <div className="cat-brand-select">
-                            <label>Какой корм закажете?</label>
-                            <div className="radio-group radio-group--inline">
-                                {['Purina Pro Plan', 'Grandorf', 'Оба!'].map(brand => (
-                                    <label
-                                        key={brand}
-                                        className={`radio-card radio-card--small ${
-                                            form.catFoodBrand === brand ? 'selected' : ''
-                                        }`}
-                                    >
-                                        <input
-                                            type="radio"
-                                            name="catBrand"
-                                            value={brand}
-                                            checked={form.catFoodBrand === brand}
-                                            onChange={() => setForm({ ...form, catFoodBrand: brand })}
-                                            required={form.catFood}
-                                            disabled={loading}
-                                        />
-                                        <div className="radio-content">
-                                            <span className="radio-label">{brand}</span>
-                                        </div>
-                                    </label>
-                                ))}
-                            </div>
+                        <div className="cat-picker-wrapper">
+                            <CatFoodPicker
+                                selectedBrand={form.catFoodBrand}
+                                onBrandSelect={brand => setForm({...form, catFoodBrand: brand})}
+                                disabled={loading}
+                            />
                         </div>
                     )}
                 </div>
@@ -483,7 +471,7 @@ export default function MenuSurvey() {
                         placeholder="Например: аллергия на орехи..."
                         rows={3}
                         value={form.comment}
-                        onChange={e => setForm({ ...form, comment: e.target.value })}
+                        onChange={e => setForm({...form, comment: e.target.value})}
                         disabled={loading}
                     />
                 </div>

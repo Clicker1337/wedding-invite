@@ -1208,3 +1208,423 @@
   from { opacity: 0; transform: translateY(20px) }
   to { opacity: 1; transform: translateY(0) }
 }
+
+/* ==================== CAT FOOD PICKER ==================== */
+.cat-picker-wrapper {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f5dfc0;
+}
+
+.cat-brand-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.cat-brand-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.6rem 1rem;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  background: #fff;
+  color: #5c4a3a;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.cat-brand-btn:hover {
+  border-color: #8b6f5e;
+}
+
+.cat-brand-btn.active {
+  background: #8b6f5e;
+  color: #fff;
+  border-color: #8b6f5e;
+}
+
+/* ==================== PRODUCTS SECTION ==================== */
+.cat-products-section {
+  animation: slideDown 0.3s ease;
+}
+
+.cat-products-hint {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.8rem;
+}
+
+.cat-products-brand-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8b6f5e;
+  margin: 1rem 0 0.5rem;
+}
+
+/* Горизонтальный скролл */
+.cat-products-scroll {
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding-bottom: 0.8rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cat-products-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.cat-products-scroll::-webkit-scrollbar-track {
+  background: #f0e6de;
+  border-radius: 2px;
+}
+
+.cat-products-scroll::-webkit-scrollbar-thumb {
+  background: #8b6f5e;
+  border-radius: 2px;
+}
+
+/* ==================== PRODUCT CARD ==================== */
+.cat-product-card {
+  flex: 0 0 160px;
+  background: #fff;
+  border: 1.5px solid #e8ddd4;
+  border-radius: 14px;
+  padding: 0.8rem;
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.cat-product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #8b6f5e;
+}
+
+/* Тег */
+.cat-product-tag {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.65rem;
+  background: #fff3e0;
+  color: #e65100;
+  border-radius: 6px;
+  padding: 0.15rem 0.4rem;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Фото */
+.cat-product-image-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #faf8f5;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.2rem;
+}
+
+.cat-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
+.cat-product-image-fallback {
+  font-size: 3rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Инфо */
+.cat-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.cat-product-name {
+  font-size: 0.8rem;
+  color: #3c2e24;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.cat-product-weight {
+  font-size: 0.72rem;
+  color: #aaa;
+}
+
+.cat-product-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cat-product-stars {
+  color: #f4b400;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+
+.cat-product-reviews {
+  font-size: 0.65rem;
+  color: #bbb;
+}
+
+.cat-product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.cat-product-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3c2e24;
+}
+
+.cat-product-old-price {
+  font-size: 0.72rem;
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.cat-product-shop {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+/* ==================== CONFIRM MODAL ==================== */
+.cat-confirm-modal {
+  text-align: center;
+  max-width: 380px !important;
+}
+
+.cat-confirm-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cat-confirm-title {
+  font-size: 1.2rem;
+  color: #3c2e24;
+  margin-bottom: 1.2rem;
+}
+
+.cat-confirm-address {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #fff8f0;
+  border: 1.5px solid #f5dfc0;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  margin-bottom: 0.8rem;
+}
+
+.cat-confirm-address-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.cat-confirm-address-label {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 0.2rem;
+}
+
+.cat-confirm-address-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3c2e24;
+}
+
+.cat-copy-btn {
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px dashed #e8ddd4;
+  border-radius: 10px;
+  background: #fff;
+  color: #8b6f5e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: all 0.2s;
+}
+
+.cat-copy-btn:hover {
+  border-color: #8b6f5e;
+  background: #faf8f5;
+}
+
+.cat-confirm-hint {
+  font-size: 0.78rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.cat-confirm-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cat-confirm-cancel {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  background: #fff;
+  color: #8b6f5e;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.cat-confirm-go {
+  flex: 2;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 12px;
+  background: #8b6f5e;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cat-confirm-go:hover {
+  background: #7a5e4e;
+}
+
+/* ==================== SKELETON ==================== */
+.cat-product-skeleton {
+  flex: 0 0 160px;
+  background: #fff;
+  border: 1.5px solid #e8ddd4;
+  border-radius: 14px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(90deg, #f0e6de 25%, #faf8f5 50%, #f0e6de 75%);
+  background-size: 200% 100%;
+  border-radius: 10px;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-line {
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0e6de 25%, #faf8f5 50%, #f0e6de 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-line--long  { width: 90%; }
+.skeleton-line--medium { width: 60%; }
+.skeleton-line--short  { width: 40%; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ==================== STATES ==================== */
+.cat-products-error {
+  font-size: 0.85rem;
+  color: #e65100;
+  padding: 0.8rem;
+  background: #fff3e0;
+  border-radius: 10px;
+}
+
+.cat-products-empty {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* ==================== CONFIRM PRODUCT PREVIEW ==================== */
+.cat-confirm-product {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #faf8f5;
+  border-radius: 12px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.cat-confirm-product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.cat-confirm-product-name {
+  font-size: 0.85rem;
+  color: #3c2e24;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+
+.cat-confirm-product-weight {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 0.2rem;
+}
+
+.cat-confirm-product-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3c2e24;
+}
+
+/* ==================== DISCOUNT BADGE ==================== */
+.cat-product-discount {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.65rem;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 6px;
+  padding: 0.15rem 0.4rem;
+  font-weight: 700;
+  z-index: 1;
+}
