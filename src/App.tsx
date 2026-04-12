@@ -1,6 +1,6 @@
 import Hero from './components/Hero'
 import Couple from './components/Couple'
-import Countdown from './components/Countdown'
+import Countdown from './components/CountDown'
 import Timeline from './components/Timeline'
 import Gallery from './components/Gallery'
 import RSVP from './components/RSVP'
