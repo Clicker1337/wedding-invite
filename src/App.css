@@ -679,3 +679,532 @@
   font-size: 0.75rem;
   color: #bbb;
 }
+
+/* ==================== MENU PAGE ==================== */
+.menu-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.menu-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.menu-subtitle {
+  color: #8b6f5e;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.menu-back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #8b6f5e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-back:hover {
+  opacity: 0.7;
+}
+
+/* ==================== CAT BANNER ==================== */
+.cat-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: linear-gradient(135deg, #fff8f0, #fff3e6);
+  border: 1px solid #f5dfc0;
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cat-banner-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.cat-banner-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #5c4a3a;
+}
+
+/* ==================== MENU REFERENCE ==================== */
+.menu-reference {
+  background: #faf8f5;
+  border: 1px solid #e8ddd4;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.menu-reference summary {
+  font-size: 0.95rem;
+  color: #8b6f5e;
+  font-weight: 500;
+  list-style: none;
+  padding: 0.3rem 0;
+}
+
+.menu-reference summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu-reference-content {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8ddd4;
+}
+
+.menu-section {
+  margin-bottom: 1rem;
+}
+
+.menu-section h4 {
+  font-size: 0.9rem;
+  color: #5c4a3a;
+  margin-bottom: 0.4rem;
+}
+
+.menu-section ul {
+  padding-left: 1.2rem;
+  color: #888;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.menu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ==================== PERSON MENU CARD ==================== */
+.person-menu-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0e6de;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: slideDown 0.3s ease;
+}
+
+.person-menu-header {
+  margin-bottom: 0.3rem;
+}
+
+.person-menu-number {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #fff;
+  background: #8b6f5e;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+}
+
+/* ==================== RADIO CARDS ==================== */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.radio-group--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #faf8f5;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-card input[type='radio'] {
+  display: none;
+}
+
+.radio-card.selected {
+  border-color: #8b6f5e;
+  background: #f5ebe0;
+}
+
+.radio-card--small {
+  padding: 0.6rem 1rem;
+  flex: 1;
+  min-width: 90px;
+  justify-content: center;
+  text-align: center;
+}
+
+.radio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.radio-label {
+  font-size: 0.9rem;
+  color: #5c4a3a;
+  font-weight: 500;
+}
+
+.radio-desc {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+/* ==================== CAT SECTION ==================== */
+.cat-section {
+  background: #fff8f0;
+  border: 1px solid #f5dfc0;
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+}
+
+.cat-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #5c4a3a;
+  line-height: 1.5;
+}
+
+.cat-checkbox-label input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: #8b6f5e;
+  margin-top: 2px;
+}
+
+.cat-brand-select {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f5dfc0;
+}
+
+.cat-brand-select label {
+  font-size: 0.85rem;
+  color: #8b6f5e;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* ==================== SUCCESS ==================== */
+.menu-success {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.menu-success-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.menu-success h2 {
+  color: #5c4a3a;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.menu-success p {
+  color: #8b6f5e;
+  font-size: 1rem;
+}
+
+.menu-link-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  background: #8b6f5e;
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.menu-link-button:hover {
+  background: #7a5e4e;
+}
+
+/* ==================== FORM SECTION TITLE ==================== */
+.form-section-title {
+  font-size: 1rem;
+  color: #5c4a3a;
+  margin-bottom: 0.5rem;
+}
+
+/* ==================== TABS ==================== */
+.guest-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.guest-tab {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: 2px solid #e8ddd4;
+  border-radius: 12px;
+  background: #fff;
+  color: #8b6f5e;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.guest-tab.active {
+  background: #8b6f5e;
+  color: #fff;
+  border-color: #8b6f5e;
+}
+
+/* ==================== GUEST CARD UPDATES ==================== */
+.guest-card {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.guest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.guest-card--deleted {
+  opacity: 0.55;
+  background: #f9f5f3;
+}
+
+.guest-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ==================== MENU BADGE ==================== */
+.menu-badge {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.menu-badge--done {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.menu-badge--empty {
+  background: #f5f5f5;
+  color: #aaa;
+}
+
+/* ==================== RESTORE BTN ==================== */
+.restore-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #e8f5e9;
+  color: #388e3c;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.restore-btn:hover {
+  background: #c8e6c9;
+}
+
+/* ==================== MODAL ==================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.25s ease;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f0e6de;
+  color: #8b6f5e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: #e8ddd4;
+}
+
+.modal-header {
+  margin-bottom: 1.5rem;
+}
+
+.modal-name {
+  font-size: 1.6rem;
+  color: #5c4a3a;
+  margin-bottom: 0.3rem;
+}
+
+.modal-date {
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.modal-deleted-badge {
+  background: #fff3e0;
+  color: #e65100;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.modal-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0e6de;
+}
+
+.modal-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.modal-section-title {
+  font-size: 1rem;
+  color: #8b6f5e;
+  margin-bottom: 0.8rem;
+}
+
+.modal-text {
+  font-size: 0.9rem;
+  color: #5c4a3a;
+  margin-bottom: 0.5rem;
+}
+
+.modal-companions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.modal-message {
+  margin-top: 0.8rem;
+  font-style: italic;
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.modal-no-menu {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.modal-cat {
+  margin-top: 0.8rem;
+  background: #fff8f0;
+  border: 1px solid #f5dfc0;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  color: #5c4a3a;
+}
+
+.modal-comment {
+  margin-top: 0.8rem;
+  color: #888;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ==================== PERSON MENU VIEW ==================== */
+.person-menu-view {
+  background: #faf8f5;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.person-menu-view-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8b6f5e;
+  margin-bottom: 0.5rem;
+}
+
+.person-menu-view-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #5c4a3a;
+  margin-bottom: 0.25rem;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}

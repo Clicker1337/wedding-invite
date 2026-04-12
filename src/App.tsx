@@ -1,17 +1,27 @@
 import Hero from './components/Hero'
 import Couple from './components/Couple'
-import Countdown from './components/CountDown'
+import Countdown from './components/Countdown'
 import Timeline from './components/Timeline'
 import Gallery from './components/Gallery'
 import RSVP from './components/RSVP'
 import Footer from './components/Footer'
 import GuestList from './components/GuestList'
+import MenuSurvey from './components/MenuSurvey'
 import './App.css'
 
-export default function App() {
-    const isAdmin = window.location.search.includes('admin')
+type Page = 'home' | 'admin' | 'menu'
 
-    if (isAdmin) {
+function getPage(): Page {
+    const search = window.location.search
+    if (search.includes('admin')) return 'admin'
+    if (search.includes('menu')) return 'menu'
+    return 'home'
+}
+
+export default function App() {
+    const page = getPage()
+
+    if (page === 'admin') {
         return (
             <div className="app">
                 <div className="admin-page">
@@ -21,6 +31,14 @@ export default function App() {
                     </div>
                     <GuestList />
                 </div>
+            </div>
+        )
+    }
+
+    if (page === 'menu') {
+        return (
+            <div className="app">
+                <MenuSurvey />
             </div>
         )
     }
