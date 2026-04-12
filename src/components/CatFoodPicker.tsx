@@ -240,8 +240,8 @@ export default function CatFoodPicker({ selectedBrand, onBrandSelect, disabled }
     const purinaProducts = products.filter(p => p.brand === 'purina')
     const grandorfProducts = products.filter(p => p.brand === 'grandorf')
 
-    const showPurina = selectedBrand === 'Purina Pro Plan' || selectedBrand === 'Оба!'
-    const showGrandorf = selectedBrand === 'Grandorf' || selectedBrand === 'Оба!'
+    // const showPurina = selectedBrand === 'Purina Pro Plan' || selectedBrand === 'Оба!'
+    // const showGrandorf = selectedBrand === 'Grandorf' || selectedBrand === 'Оба!'
 
     return (
         <div className="cat-food-picker">

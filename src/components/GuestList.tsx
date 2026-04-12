@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import CatProductsAdmin from './CatProductsAdmin'
 
 const USERS_API = 'https://17316ead6387d801.mokky.dev/users'
 const MENU_API = 'https://17316ead6387d801.mokky.dev/menu'
@@ -197,6 +198,7 @@ export default function GuestList() {
     const [error, setError] = useState<string | null>(null)
     const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null)
     const [showDeleted, setShowDeleted] = useState(false)
+    const [adminTab, setAdminTab] = useState<'guests' | 'cat'>('guests')
 
     useEffect(() => {
         fetchAll()
@@ -293,133 +295,154 @@ export default function GuestList() {
 
     return (
         <section className="guest-list">
-
-            {/* ========== СТАТИСТИКА ========== */}
-            <div className="guest-stats">
-                <div className="stat">
-                    <span className="stat-number">{activeGuests.length}</span>
-                    <span className="stat-label">подтвердили</span>
-                </div>
-                <div className="stat">
-                    <span className="stat-number">{totalPeople}</span>
-                    <span className="stat-label">всего человек</span>
-                </div>
-                <div className="stat">
-                    <span className="stat-number">{menuFilled}</span>
-                    <span className="stat-label">выбрали меню</span>
-                </div>
-                <div className="stat">
-                    <span className="stat-number">{catFoodCount}</span>
-                    <span className="stat-label">🐱 корм</span>
-                </div>
-            </div>
-
-            {/* ========== ПЕРЕКЛЮЧАТЕЛЬ ========== */}
-            <div className="guest-tabs">
+            {/* Переключатель разделов */}
+            <div className="admin-section-tabs">
                 <button
-                    className={`guest-tab ${!showDeleted ? 'active' : ''}`}
-                    onClick={() => setShowDeleted(false)}
+                    className={`admin-section-tab ${adminTab === 'guests' ? 'active' : ''}`}
+                    onClick={() => setAdminTab('guests')}
                 >
-                    Активные ({activeGuests.length})
+                    👥 Гости
                 </button>
                 <button
-                    className={`guest-tab ${showDeleted ? 'active' : ''}`}
-                    onClick={() => setShowDeleted(true)}
+                    className={`admin-section-tab ${adminTab === 'cat' ? 'active' : ''}`}
+                    onClick={() => setAdminTab('cat')}
                 >
-                    Удалённые ({deletedGuests.length})
+                    🐱 Корм
                 </button>
             </div>
 
-            {/* ========== СПИСОК ГОСТЕЙ ========== */}
-            {visibleGuests.length === 0 ? (
-                <p className="no-guests">
-                    {showDeleted ? 'Нет удалённых гостей' : 'Пока никто не подтвердил 😢'}
-                </p>
-            ) : (
-                <div className="guest-cards">
-                    {visibleGuests.map(guest => {
-                        const menu = matchMenuToGuest(guest, menuEntries)
-                        const hasMenu = !!menu
+            {adminTab === 'guests' ? (
+                <>
+                    {/* ========== СТАТИСТИКА ========== */}
+                    <div className="guest-stats">
+                        <div className="stat">
+                            <span className="stat-number">{activeGuests.length}</span>
+                            <span className="stat-label">подтвердили</span>
+                        </div>
+                        <div className="stat">
+                            <span className="stat-number">{totalPeople}</span>
+                            <span className="stat-label">всего человек</span>
+                        </div>
+                        <div className="stat">
+                            <span className="stat-number">{menuFilled}</span>
+                            <span className="stat-label">выбрали меню</span>
+                        </div>
+                        <div className="stat">
+                            <span className="stat-number">{catFoodCount}</span>
+                            <span className="stat-label">🐱 корм</span>
+                        </div>
+                    </div>
 
-                        return (
-                            <div
-                                key={guest.id}
-                                className={`guest-card ${guest.deleted ? 'guest-card--deleted' : ''}`}
-                                onClick={() => setSelectedGuest(guest)}
-                            >
-                                <div className="guest-card-header">
-                                    <div>
-                                        <h3 className="guest-card-name">
-                                            {fullName(guest.firstName, guest.lastName)}
-                                        </h3>
-                                        <span className="guest-card-count">
+                    {/* ========== ПЕРЕКЛЮЧАТЕЛЬ ========== */}
+                    <div className="guest-tabs">
+                        <button
+                            className={`guest-tab ${!showDeleted ? 'active' : ''}`}
+                            onClick={() => setShowDeleted(false)}
+                        >
+                            Активные ({activeGuests.length})
+                        </button>
+                        <button
+                            className={`guest-tab ${showDeleted ? 'active' : ''}`}
+                            onClick={() => setShowDeleted(true)}
+                        >
+                            Удалённые ({deletedGuests.length})
+                        </button>
+                    </div>
+
+                    {/* ========== СПИСОК ГОСТЕЙ ========== */}
+                    {visibleGuests.length === 0 ? (
+                        <p className="no-guests">
+                            {showDeleted ? 'Нет удалённых гостей' : 'Пока никто не подтвердил 😢'}
+                        </p>
+                    ) : (
+                        <div className="guest-cards">
+                            {visibleGuests.map(guest => {
+                                const menu = matchMenuToGuest(guest, menuEntries)
+                                const hasMenu = !!menu
+
+                                return (
+                                    <div
+                                        key={guest.id}
+                                        className={`guest-card ${guest.deleted ? 'guest-card--deleted' : ''}`}
+                                        onClick={() => setSelectedGuest(guest)}
+                                    >
+                                        <div className="guest-card-header">
+                                            <div>
+                                                <h3 className="guest-card-name">
+                                                    {fullName(guest.firstName, guest.lastName)}
+                                                </h3>
+                                                <span className="guest-card-count">
                       {Number(guest.guests) === 1
                           ? 'Придёт один'
                           : `Придёт: ${guest.guests} чел.`}
                     </span>
-                                    </div>
+                                            </div>
 
-                                    <div className="guest-card-actions">
-                                        {/* Бейдж меню */}
-                                        <span className={`menu-badge ${hasMenu ? 'menu-badge--done' : 'menu-badge--empty'}`}>
+                                            <div className="guest-card-actions">
+                                                {/* Бейдж меню */}
+                                                <span className={`menu-badge ${hasMenu ? 'menu-badge--done' : 'menu-badge--empty'}`}>
                       {hasMenu ? '🍽️ Выбрано' : '🍽️ Нет'}
                     </span>
 
-                                        {/* Кнопка удаления / восстановления */}
-                                        {guest.deleted ? (
-                                            <button
-                                                className="restore-btn"
-                                                onClick={e => restoreGuest(e, guest.id)}
-                                                title="Восстановить"
-                                            >
-                                                ↩
-                                            </button>
-                                        ) : (
-                                            <button
-                                                className="delete-btn"
-                                                onClick={e => softDeleteGuest(e, guest.id)}
-                                                title="Пометить удалённым"
-                                            >
-                                                ✕
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
+                                                {/* Кнопка удаления / восстановления */}
+                                                {guest.deleted ? (
+                                                    <button
+                                                        className="restore-btn"
+                                                        onClick={e => restoreGuest(e, guest.id)}
+                                                        title="Восстановить"
+                                                    >
+                                                        ↩
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        className="delete-btn"
+                                                        onClick={e => softDeleteGuest(e, guest.id)}
+                                                        title="Пометить удалённым"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
 
-                                {guest.companions && guest.companions.length > 0 && (
-                                    <div className="guest-card-companions">
-                                        <span className="companions-label">Спутники:</span>
-                                        {guest.companions.map((c, i) => (
-                                            <span key={i} className="companion-tag">
+                                        {guest.companions && guest.companions.length > 0 && (
+                                            <div className="guest-card-companions">
+                                                <span className="companions-label">Спутники:</span>
+                                                {guest.companions.map((c, i) => (
+                                                    <span key={i} className="companion-tag">
                         {fullName(c.firstName, c.lastName)}
                       </span>
-                                        ))}
-                                    </div>
-                                )}
+                                                ))}
+                                            </div>
+                                        )}
 
-                                {guest.message && (
-                                    <p className="guest-card-message">«{guest.message}»</p>
-                                )}
+                                        {guest.message && (
+                                            <p className="guest-card-message">«{guest.message}»</p>
+                                        )}
 
-                                <span className="guest-card-date">
+                                        <span className="guest-card-date">
                   {new Date(guest.createdAt).toLocaleDateString('ru-RU', {
                       day: 'numeric', month: 'long',
                       hour: '2-digit', minute: '2-digit',
                   })}
                 </span>
-                            </div>
-                        )
-                    })}
-                </div>
-            )}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )}
 
-            {/* ========== МОДАЛКА ========== */}
-            {selectedGuest && (
-                <GuestModal
-                    guest={selectedGuest}
-                    menu={matchMenuToGuest(selectedGuest, menuEntries)}
-                    onClose={() => setSelectedGuest(null)}
-                />
+                    {/* ========== МОДАЛКА ========== */}
+                    {selectedGuest && (
+                        <GuestModal
+                            guest={selectedGuest}
+                            menu={matchMenuToGuest(selectedGuest, menuEntries)}
+                            onClose={() => setSelectedGuest(null)}
+                        />
+                    )}
+                </>
+            ) : (
+                <CatProductsAdmin />
             )}
         </section>
     )
