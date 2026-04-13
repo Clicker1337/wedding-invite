@@ -298,7 +298,7 @@ export default function MenuSurvey() {
                 <div className="cat-banner">
                     <div className="cat-banner-icon">🐱</div>
                     <div className="cat-banner-text">
-                        <strong>Вместо цветов и алкоголя</strong> — порадуйте нашего стерилизованного
+                        <strong>Вместо цветов и алкоголя</strong> — порадуйте нашего любимого
                         котика! Закажите ему корм <strong>Purina Pro Plan</strong> или{' '}
                         <strong>Grandorf</strong> через Озон на адрес:{' '}
                         <strong>проспект Строителей, 2</strong> 🛒
