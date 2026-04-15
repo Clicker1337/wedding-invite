@@ -14,7 +14,7 @@ export default function Gallery() {
 
     return (
         <section className="gallery" ref={ref}>
-            <div className={`${isVisible ? 'fade-up' : 'hidden'}`}>
+            <div className={`${isVisible ? 'fade-up' : 'anim-hidden'}`}>
                 <h2 className="section-title">Наши фотографии</h2>
                 <div className="gallery-grid">
                     {photos.map((photo, i) => (

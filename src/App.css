@@ -2632,3 +2632,17 @@
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
 }
+
+/* Скрыт для анимации — НЕ display:none, элемент есть в потоке */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Появился */
+.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}

@@ -39,7 +39,7 @@ function TimelineItem({ event, index }: { event: TimelineEvent; index: number })
     return (
         <div
             ref={ref}
-            className={`timeline-item ${isEven ? 'left' : 'right'} ${isVisible ? 'fade-up' : 'hidden'}`}
+            className={`timeline-item ${isEven ? 'left' : 'right'} ${isVisible ? 'fade-up' : 'anim-hidden'}`}
             style={{ transitionDelay: `${index * 150}ms` }}
         >
             <div className="timeline-dot">
@@ -62,7 +62,7 @@ export default function Timeline() {
 
     return (
         <section className="timeline-section" id="timeline">
-            <div ref={ref} className={`${isVisible ? 'fade-up' : 'hidden'}`}>
+            <div ref={ref} className={`${isVisible ? 'fade-up' : 'anim-hidden'}`}>
                 <h2 className="section-title">Программа дня</h2>
             </div>
             <div className="timeline">

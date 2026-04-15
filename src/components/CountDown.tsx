@@ -44,7 +44,7 @@ export default function Countdown() {
 
     return (
         <section className="countdown" ref={ref}>
-            <div className={`${isVisible ? 'fade-up' : 'hidden'}`}>
+            <div className={`${isVisible ? 'fade-up' : 'anim-hidden'}`}>
                 <h2 className="section-title">До свадьбы осталось</h2>
                 <div className="countdown-grid">
                     {blocks.map((b, i) => (

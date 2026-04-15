@@ -5,7 +5,7 @@ export default function Couple() {
 
     return (
         <section className="couple" ref={ref}>
-            <div className={`couple-content ${isVisible ? 'fade-up' : 'hidden'}`}>
+            <div className={`couple-content ${isVisible ? 'fade-up' : 'anim-hidden'}`}>
                 <h2 className="section-title">Дорогие гости!</h2>
                 <div className="couple-card">
                     {/* Замени на фото молодожёнов */}
